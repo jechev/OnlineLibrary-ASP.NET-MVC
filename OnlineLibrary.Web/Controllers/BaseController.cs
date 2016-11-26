@@ -8,17 +8,17 @@ namespace OnlineLibrary.Web.Controllers
     public abstract class BaseController : Controller
     {
        
-        protected BaseController(OnlineLibraryDbContext data)
+        protected BaseController(IOnlineLibraryDbData data)
         {
             this.Data = data;
         }
-        protected BaseController(OnlineLibraryDbContext data, User userProfile)
+        protected BaseController(IOnlineLibraryDbData data, User userProfile)
             : this(data)
         {
             this.UserProfile = userProfile;
         }
 
-        protected OnlineLibraryDbContext Data { get; private set; }
+        protected IOnlineLibraryDbData Data { get; private set; }
 
         protected User UserProfile { get; private set; }
 

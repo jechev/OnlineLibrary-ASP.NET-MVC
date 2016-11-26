@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace OnlineLibrary.Web.Controllers
+﻿namespace OnlineLibrary.Web.Controllers
 {
-    using Data;
-    using OnlineLibrary.Models;
+    using System.Web.Mvc;
 
     public class HomeController : Controller
     {

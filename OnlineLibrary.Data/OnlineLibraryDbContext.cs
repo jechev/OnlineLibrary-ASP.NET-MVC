@@ -5,7 +5,7 @@
     using System.Data.Entity;
     using Migrations;
 
-    public class OnlineLibraryDbContext : IdentityDbContext<User>
+    public class OnlineLibraryDbContext : IdentityDbContext<User>, IOnlineLibraryDbContext
     {
         public OnlineLibraryDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
