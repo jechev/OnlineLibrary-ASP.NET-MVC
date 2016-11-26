@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLibrary.Models", "OnlineLibrary.Models\OnlineLibrary.Models.csproj", "{B1AB9BC0-ED99-4824-BB57-41210BBD86C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLibrary.Data", "OnlineLibrary.Data\OnlineLibrary.Data.csproj", "{A0982F9B-8A10-46DB-830D-BF64C0296DEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLibrary.Web", "OnlineLibrary.Web\OnlineLibrary.Web.csproj", "{1B948632-F7B4-4255-ACE9-0FB656D182DA}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1AB9BC0-ED99-4824-BB57-41210BBD86C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1AB9BC0-ED99-4824-BB57-41210BBD86C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1AB9BC0-ED99-4824-BB57-41210BBD86C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1AB9BC0-ED99-4824-BB57-41210BBD86C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0982F9B-8A10-46DB-830D-BF64C0296DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0982F9B-8A10-46DB-830D-BF64C0296DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0982F9B-8A10-46DB-830D-BF64C0296DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0982F9B-8A10-46DB-830D-BF64C0296DEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B948632-F7B4-4255-ACE9-0FB656D182DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B948632-F7B4-4255-ACE9-0FB656D182DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B948632-F7B4-4255-ACE9-0FB656D182DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B948632-F7B4-4255-ACE9-0FB656D182DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

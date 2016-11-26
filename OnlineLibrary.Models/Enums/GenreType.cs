@@ -1,0 +1,36 @@
+﻿namespace OnlineLibrary.Models.Enums
+{
+    public enum GenreType
+    {
+        Satire,
+        Drama,
+        Action,
+        Adventure,
+        Romance,
+        Mystery,
+        Horror,
+        SelfHelp,
+        Health,
+        Guide,
+        Travel,
+        Children,
+        Religion,
+        Science,
+        History,
+        Math,
+        Anthology,
+        Poetry,
+        Encyclopedias,
+        Dictionaries,
+        Comics,
+        Art,
+        Cookbooks,
+        Diaries,
+        Journals,
+        Series,
+        Trilogy,
+        Biographies,
+        Autobiographies,
+        Fantasy
+    }
+}
