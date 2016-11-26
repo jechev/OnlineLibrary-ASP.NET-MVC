@@ -15,11 +15,13 @@
         [Display(Name = "Genre")]
         public GenreType Genre { get; set; }
 
-        [ValidateFile(6291456)]
+        [ValidateFile(4194304)]
+        [Required(ErrorMessage = "An Image is required")]
         public HttpPostedFileBase ImageFile { get; set; }
 
         [Display(Name = "Page Count")]
-
+        [Required(ErrorMessage = "Page Count must be number")]
+        [Range(5,10000,ErrorMessage = "Please enter number from {1} to {2}")]
         public int PageCount { get; set; }
 
 
