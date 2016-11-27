@@ -1,0 +1,15 @@
+﻿@model IEnumerable<OnlineLibrary.Web.Models.BookInListViewModel>
+@{
+    ViewBag.Title = "List All Books";
+}    
+<h1>List All Books</h1>
+<table class="table table-hover">
+    <tr>
+        <th>Image</th>
+        <th>Book's Name</th>
+        <th>Genre</th>
+        <th>Page Count</th>
+        <th>Created On</th>
+    </tr>
+       @Html.DisplayForModel()
+</table>

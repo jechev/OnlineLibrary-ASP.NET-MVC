@@ -1,0 +1,18 @@
+﻿@model OnlineLibrary.Web.Models.BookInListViewModel
+<tr>
+    <td>
+        <img src="../../media/covers/@Model.ImgPath" class="img-rounded" width="70px" height="70px" alt="@Model.Name" />
+    </td>
+    <td>
+        @Model.Name
+    </td>
+    <td>
+        @Model.Genre
+    </td>
+    <td>
+        @Model.PageCount
+    </td>
+    <td>
+        @Model.CreatedOn
+    </td>
+</tr>
