@@ -1,7 +1,9 @@
-﻿@model OnlineLibrary.Web.Models.BookInListViewModel
+﻿@using OnlineLibrary.Web.HtmlExtensions
+@model BookInListViewModel
 <tr>
     <td>
-        <img src="../../media/covers/@Model.ImgPath" class="img-rounded" width="70px" height="70px" alt="@Model.Name" />
+        
+        @Html.Image(@Model.ImgPath,70,70)
     </td>
     <td>
         @Model.Name

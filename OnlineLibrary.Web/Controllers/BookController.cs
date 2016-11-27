@@ -8,6 +8,7 @@
     using Microsoft.AspNet.Identity;
     using Models;
     using OnlineLibrary.Models;
+    using PagedList;
 
 
     [Authorize]
@@ -62,14 +63,27 @@
         //
         // GET: /Book/List/
         [HttpGet]
-        public ActionResult List()
+        public ActionResult List(int? page,string query)
         {
+
             var books = this.Data.Books.All()
                 .OrderByDescending(b=> b.CreatedOn)
                 .Select(BookInListViewModel.Create)
                 .ToList();
 
-            return View(books);
+            if (!string.IsNullOrEmpty(query))
+            {
+                books = books.Where(b => b.Name.Contains(query)).ToList();
+            }
+            var pageNumber = page ?? 1;
+            var pageOfBooks = books.ToPagedList(pageNumber, 7);
+            var viewModel = new ListBooksViewModel
+            {
+                Books = pageOfBooks,
+
+            };
+
+            return View(viewModel);
         }
     }
 }

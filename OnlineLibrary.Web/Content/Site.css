@@ -29,3 +29,6 @@ textarea {
    color: Red;
 
 }
+.search-control {
+    display: inline-block
+}

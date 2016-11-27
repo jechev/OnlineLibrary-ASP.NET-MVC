@@ -1,15 +1,52 @@
-﻿@model IEnumerable<OnlineLibrary.Web.Models.BookInListViewModel>
+﻿@model ListBooksViewModel
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "List All Books";
-}    
+}
+<div id="all">
+    
+</div>   
 <h1>List All Books</h1>
-<table class="table table-hover">
-    <tr>
-        <th>Image</th>
-        <th>Book's Name</th>
-        <th>Genre</th>
-        <th>Page Count</th>
-        <th>Created On</th>
-    </tr>
-       @Html.DisplayForModel()
-</table>
+
+@if (@Model.Books.Any())
+{
+    using (Ajax.BeginForm("List", new AjaxOptions
+    {
+        HttpMethod = "Get",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "all"
+    }))
+    {
+        @Html.TextBox("query",null,new { @class = "form-control search-control"})
+        <input type="submit" value="Search" class="btn btn-info"/>
+
+    }
+    <br />
+<div id="books">
+    <table class="table table-hover">
+        <tr>
+            <th>Image</th>
+            <th>Book's Name</th>
+            <th>Genre</th>
+            <th>Page Count</th>
+            <th>Created On</th>
+        </tr>
+        @Html.DisplayFor(b => b.Books)
+    </table>
+    <div class="text-center">
+        @Html.PagedListPager(Model.Books, page => Url.Action("List", new { page = page }))
+        Showing @Model.Books.FirstItemOnPage to @Model.Books.LastItemOnPage
+        of @Model.Books.TotalItemCount Books
+    </div>
+    
+</div>
+
+}
+else
+{
+    <h2>No Books!!!</h2>
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
+}
+			
