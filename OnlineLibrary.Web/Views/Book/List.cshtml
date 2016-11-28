@@ -14,10 +14,11 @@
 {
     HttpMethod = "Get",
     InsertionMode = InsertionMode.Replace,
-    UpdateTargetId = "all"
+    UpdateTargetId = "all",
+    OnBegin = "checkForTwoNumbers"
 }))
 {
-    @Html.TextBox("query", null, new { @class = "form-control search-control" })
+    @Html.TextBox("query", null, new { @class = "form-control search-control", id="query" })
     <select id="searchType" name="searchtype" class="form-control search-control">
         <optgroup label="Choose one search options"></optgroup>   
         <option value="1">Name</option>

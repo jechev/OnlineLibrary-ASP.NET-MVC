@@ -67,7 +67,7 @@
         [HttpGet]
         public ActionResult List(int? page,string query,string searchType)
         {
-            Regex searchPagesCount = new Regex(@"(\d+)\W+(\d+)");
+            Regex searchPagesCount = new Regex(@"(\d+)");
             var pageNumber = page ?? 1;
             var books = this.Data.Books.All()
                 .OrderByDescending(b=> b.CreatedOn)
@@ -87,10 +87,17 @@
                         break;
                     case "3":
                         Match matchNumbers = searchPagesCount.Match(query);
-                        var firstNumber = Int32.Parse(matchNumbers.Groups[1].Value);
-                        var seconNumber = Int32.Parse(matchNumbers.Groups[2].Value);
-                        books = books.Where(b => b.PageCount >= firstNumber && b.PageCount <= seconNumber).ToList();
-                        break;
+                        if (matchNumbers.Groups.Count == 3)
+                        {
+                            var firstNumber = Int32.Parse(matchNumbers.Groups[1].Value);
+                            var seconNumber = Int32.Parse(matchNumbers.Groups[2].Value);
+                            books = books.Where(b => b.PageCount >= firstNumber && b.PageCount <= seconNumber).ToList();
+                            break;
+                        }
+                            var number = Int32.Parse(matchNumbers.Groups[1].Value);
+                            books = books.Where(b => b.PageCount >= number).ToList();
+                            break;
+                        
                 }
 
                 viewModel.SearchBooks = books;
