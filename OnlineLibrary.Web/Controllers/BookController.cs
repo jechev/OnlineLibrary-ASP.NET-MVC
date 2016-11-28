@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
+    using Attributes;
     using Data;
     using Microsoft.AspNet.Identity;
     using Models;
@@ -30,7 +31,7 @@
 
         //
         // POST: /Book/Add
-
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Add(BookBindingModel model)
         {
