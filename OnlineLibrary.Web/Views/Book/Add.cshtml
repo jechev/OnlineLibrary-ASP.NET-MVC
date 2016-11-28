@@ -8,7 +8,6 @@
 @using (Html.BeginForm("Add", "Book", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
     <div class="form-group">
         @Html.LabelFor(b => b.Name)
         @Html.TextBoxFor(b => b.Name, new { @class = "form-control" })

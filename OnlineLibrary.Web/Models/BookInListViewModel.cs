@@ -13,7 +13,7 @@
 
         public string ImgPath { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{{0:yyyy/MM/dd}}")]
         public DateTime CreatedOn { get; set; }
 
         public int PageCount { get; set; }

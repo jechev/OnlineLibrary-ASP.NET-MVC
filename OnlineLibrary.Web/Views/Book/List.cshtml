@@ -14,8 +14,7 @@
 {
     HttpMethod = "Get",
     InsertionMode = InsertionMode.Replace,
-    UpdateTargetId = "all",
-    OnBegin = "checkForTwoNumbers"
+    UpdateTargetId = "all"
 }))
 {
     @Html.TextBox("query", null, new { @class = "form-control search-control", id="query" })

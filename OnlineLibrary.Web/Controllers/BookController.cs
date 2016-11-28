@@ -67,7 +67,7 @@
         [HttpGet]
         public ActionResult List(int? page,string query,string searchType)
         {
-            Regex searchPagesCount = new Regex(@"(\d+)");
+            Regex regexForTwoPagesCountNumbers = new Regex(@"(\d+)\W(\d+)");
             var pageNumber = page ?? 1;
             var books = this.Data.Books.All()
                 .OrderByDescending(b=> b.CreatedOn)
@@ -86,14 +86,16 @@
                         books = books.Where(b => b.Genre.ToLower().Equals(query.ToLower())).ToList();
                         break;
                     case "3":
-                        Match matchNumbers = searchPagesCount.Match(query);
+                        Match matchNumbers = regexForTwoPagesCountNumbers.Match(query);
                         if (matchNumbers.Groups.Count == 3)
                         {
                             var firstNumber = Int32.Parse(matchNumbers.Groups[1].Value);
-                            var seconNumber = Int32.Parse(matchNumbers.Groups[2].Value);
-                            books = books.Where(b => b.PageCount >= firstNumber && b.PageCount <= seconNumber).ToList();
+                            var secondNumber = Int32.Parse(matchNumbers.Groups[2].Value);
+                            books = books.Where(b => b.PageCount >= firstNumber && b.PageCount <= secondNumber).ToList();
                             break;
                         }
+                            Regex regexForOnePagesCountNumber = new Regex(@"(\d+)");
+                            matchNumbers = regexForOnePagesCountNumber.Match(query);
                             var number = Int32.Parse(matchNumbers.Groups[1].Value);
                             books = books.Where(b => b.PageCount >= number).ToList();
                             break;
