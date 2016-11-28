@@ -80,16 +80,16 @@
                 switch (searchType)
                 {
                     case "1":
-                        books = books.Where(b => b.Name.Equals(query)).ToList();
+                        books = books.Where(b => b.Name.ToLower().Equals(query.ToLower())).ToList();
                         break;
                     case "2":
-                        books = books.Where(b => b.Genre.Equals(query)).ToList();
+                        books = books.Where(b => b.Genre.ToLower().Equals(query.ToLower())).ToList();
                         break;
                     case "3":
                         Match matchNumbers = searchPagesCount.Match(query);
                         var firstNumber = Int32.Parse(matchNumbers.Groups[1].Value);
                         var seconNumber = Int32.Parse(matchNumbers.Groups[2].Value);
-                        books = books.Where(b => b.PageCount > firstNumber && b.PageCount< seconNumber).ToList();
+                        books = books.Where(b => b.PageCount >= firstNumber && b.PageCount <= seconNumber).ToList();
                         break;
                 }
 
