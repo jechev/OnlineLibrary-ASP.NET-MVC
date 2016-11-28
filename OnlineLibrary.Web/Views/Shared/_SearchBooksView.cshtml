@@ -1,12 +1,7 @@
-﻿@model ListBooksViewModel
-@using PagedList.Mvc;
-@{
-    ViewBag.Title = "List All Books";
-}
+﻿@using PagedList.Mvc
 
-
-@if (@Model.Books.Any())
-{
+@model ListBooksViewModel
+@if(@Model.SearchBooks.Any()){
     <div id="all">
         @using (Ajax.BeginForm("List", "Book", new AjaxOptions
         {
@@ -21,6 +16,7 @@
         }
         <br />
         <div id="books">
+            <h4>Result : @Model.SearchBooks.Count</h4>
             <table class="table table-hover">
                 <tr>
                     <th>Image</th>
@@ -29,23 +25,13 @@
                     <th>Page Count</th>
                     <th>Created On</th>
                 </tr>
-                @Html.DisplayFor(b => b.Books)
+                @Html.DisplayFor(b => b.SearchBooks)
             </table>
-            <div class="text-center">
-                @Html.PagedListPager(Model.Books, page => Url.Action("List", "Book", new { page = page }))
-                Showing @Model.Books.FirstItemOnPage to @Model.Books.LastItemOnPage
-                of @Model.Books.TotalItemCount Books
-            </div>
+
 
         </div>
     </div>
+}else {
+<h2>Not found any books</h2>
 
 }
-else
-{
-    <h2>No Books!!!</h2>
-}
-
-@section scripts {
-    @Scripts.Render("~/bundles/jqueryajax")
-}			

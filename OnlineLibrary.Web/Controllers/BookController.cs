@@ -70,18 +70,25 @@
                 .OrderByDescending(b=> b.CreatedOn)
                 .Select(BookInListViewModel.Create)
                 .ToList();
-
+            var viewModel = new ListBooksViewModel();
+            //if (Request.IsAjaxRequest() && !string.IsNullOrEmpty(query))
+            //{
+            //    viewModel.SearchBooks = books;
+            //    return PartialView("_PartialListBooksView",viewModel);
+            //}
+            //if (Request.IsAjaxRequest() && string.IsNullOrEmpty(query))
+            //{
+            //    return RedirectToAction("List");
+            //}
             if (!string.IsNullOrEmpty(query))
             {
                 books = books.Where(b => b.Name.Contains(query)).ToList();
+                viewModel.SearchBooks = books;
+                return PartialView("_SearchBooksView", viewModel);
             }
             var pageNumber = page ?? 1;
             var pageOfBooks = books.ToPagedList(pageNumber, 7);
-            var viewModel = new ListBooksViewModel
-            {
-                Books = pageOfBooks,
-
-            };
+            viewModel.Books = pageOfBooks;
 
             return View(viewModel);
         }
