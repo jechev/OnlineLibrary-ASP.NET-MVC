@@ -3,6 +3,13 @@
 @{
     ViewBag.Title = "List All Books";
 }
+<h1>List Books</h1>
+<h5>Search Helps:</h5>
+<ul>
+    <li>Name: book's name</li>
+    <li>Genre: genre's name</li>
+    <li>Page count: min pages-max pages</li>
+</ul>
 @using (Ajax.BeginForm("List", "Book", new AjaxOptions
 {
     HttpMethod = "Get",
@@ -11,6 +18,12 @@
 }))
 {
     @Html.TextBox("query", null, new { @class = "form-control search-control" })
+    <select id="searchType" name="searchtype" class="form-control search-control">
+        <optgroup label="Choose one search options"></optgroup>   
+        <option value="1">Name</option>
+        <option value="2">Genre</option>
+        <option value="3">Page Count</option>
+    </select>
     <input type="submit" value="Search" class="btn btn-info" />
 
 }

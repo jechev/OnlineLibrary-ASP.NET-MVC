@@ -16,7 +16,7 @@
                 @Html.DisplayFor(b => b.Books)
             </table>
             <div class="text-center">
-                @Html.PagedListPager(Model.Books, page => Url.Action("List","Book", new { page = page }))
+                @Html.PagedListPager(Model.Books, page => Url.Action("List", "Book", new {page = page}))
                 Showing @Model.Books.FirstItemOnPage to @Model.Books.LastItemOnPage
                 of @Model.Books.TotalItemCount Books
             </div>

@@ -304,8 +304,8 @@
     <Content Include="Views\Book\Add.cshtml" />
     <Content Include="Views\Book\List.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\BookInListViewModel.cshtml" />
-    <Content Include="Views\Shared\_SearchBooksView.cshtml" />
-    <Content Include="Views\Shared\_ListBooksView.cshtml" />
+    <Content Include="Views\Shared\_SearchBooksPartial.cshtml" />
+    <Content Include="Views\Shared\_ListBooksPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

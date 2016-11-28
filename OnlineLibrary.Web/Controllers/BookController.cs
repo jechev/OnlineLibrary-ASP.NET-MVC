@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using Data;
     using Microsoft.AspNet.Identity;
@@ -63,37 +64,44 @@
         //
         // GET: /Book/List/
         [HttpGet]
-        public ActionResult List(int? page,string query)
+        public ActionResult List(int? page,string query,string searchType)
         {
-
+            Regex searchPagesCount = new Regex(@"(\d+)\W+(\d+)");
+            var pageNumber = page ?? 1;
             var books = this.Data.Books.All()
                 .OrderByDescending(b=> b.CreatedOn)
-                .Select(BookInListViewModel.Create)
+                .Select(BookInListViewModel.Create) 
                 .ToList();
             var viewModel = new ListBooksViewModel();
-            //if (Request.IsAjaxRequest() && !string.IsNullOrEmpty(query))
-            //{
-            //    viewModel.SearchBooks = books;
-            //    return PartialView("_PartialListBooksView",viewModel);
-            //}
-            //if (Request.IsAjaxRequest() && string.IsNullOrEmpty(query))
-            //{
-            //    return RedirectToAction("List");
-            //}
+
             if (!string.IsNullOrEmpty(query))
             {
-                books = books.Where(b => b.Name.Contains(query)).ToList();
+                switch (searchType)
+                {
+                    case "1":
+                        books = books.Where(b => b.Name.Equals(query)).ToList();
+                        break;
+                    case "2":
+                        books = books.Where(b => b.Genre.Equals(query)).ToList();
+                        break;
+                    case "3":
+                        Match matchNumbers = searchPagesCount.Match(query);
+                        var firstNumber = Int32.Parse(matchNumbers.Groups[1].Value);
+                        var seconNumber = Int32.Parse(matchNumbers.Groups[2].Value);
+                        books = books.Where(b => b.PageCount > firstNumber && b.PageCount< seconNumber).ToList();
+                        break;
+                }
+
                 viewModel.SearchBooks = books;
-                return PartialView("_SearchBooksView", viewModel);
+                return PartialView("_SearchBooksPartial", viewModel);
             }
 
-            var pageNumber = page ?? 1;
             var pageOfBooks = books.ToPagedList(pageNumber, 7);
             viewModel.Books = pageOfBooks;
 
-            if (Request.IsAjaxRequest() && string.IsNullOrEmpty(query))
+            if ((Request.IsAjaxRequest() && string.IsNullOrEmpty(query)))
             {
-                return PartialView("_ListBooksView", viewModel);
+                return PartialView("_ListBooksPartial", viewModel);
             }
 
             return View(viewModel);
