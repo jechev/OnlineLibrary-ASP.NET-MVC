@@ -4,6 +4,14 @@
 
 <div class="jumbotron">
     <h1>Online Library</h1>
-    <p class="lead">You must login for books.</p>
-    <p>@Html.ActionLink("Go to Login","Login","Account",null,new {@class= "btn btn-primary btn-lg" })</p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p class="lead">Hello, @User.Identity.Name</p>
+    }
+    else
+    {
+        <p class="lead">You must login for books.</p>
+        <p>@Html.ActionLink("Go to Login", "Login", "Account", null, new { @class = "btn btn-primary btn-lg" })</p>
+    }
+    
 </div>
