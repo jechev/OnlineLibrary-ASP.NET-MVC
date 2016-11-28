@@ -86,9 +86,15 @@
                 viewModel.SearchBooks = books;
                 return PartialView("_SearchBooksView", viewModel);
             }
+
             var pageNumber = page ?? 1;
             var pageOfBooks = books.ToPagedList(pageNumber, 7);
             viewModel.Books = pageOfBooks;
+
+            if (Request.IsAjaxRequest() && string.IsNullOrEmpty(query))
+            {
+                return PartialView("_ListBooksView", viewModel);
+            }
 
             return View(viewModel);
         }

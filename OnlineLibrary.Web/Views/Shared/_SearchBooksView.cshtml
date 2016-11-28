@@ -3,17 +3,6 @@
 @model ListBooksViewModel
 @if(@Model.SearchBooks.Any()){
     <div id="all">
-        @using (Ajax.BeginForm("List", "Book", new AjaxOptions
-        {
-            HttpMethod = "Get",
-            InsertionMode = InsertionMode.Replace,
-            UpdateTargetId = "all"
-        }))
-        {
-            @Html.TextBox("query", null, new { @class = "form-control search-control" })
-            <input type="submit" value="Search" class="btn btn-info" />
-
-        }
         <br />
         <div id="books">
             <h4>Result : @Model.SearchBooks.Count</h4>
